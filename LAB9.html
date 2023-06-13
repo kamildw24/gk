@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+ <style>
+	body 
+	{
+		margin: 0;
+	}
+
+	canvas 
+	{
+    width: 100%;
+    height: 100%;
+	}
+</style> 
+<script src="build/three.js"></script>three.js/build/three.js
+</head>
+<body>
+<script>
+let canvas = document.getElementById("glcanvas");
+
+const scene = new THREE.Scene({color: 0xfff});
+
+const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+document.body.appendChild(renderer.domElement);
+
+const light = new THREE.PointLight( 0xffffff, 1, 300 );
+light.position.set(-5, -0.5, 0.5);
+camera.add(light);
+scene.add(camera);
+
+const material = new THREE.MeshPhongMaterial(
+    {
+        color: 0x1a1716, 
+    });
+
+let black_figure = new THREE.Group();
+
+const baseGeometry = new THREE.CylinderGeometry(0.4, 0.4, 0.1,100);
+
+const base = new THREE.Mesh(baseGeometry, material);
+black_figure.add(base);
+base.position.y = 0.2;
+
+const figureGeometry_1 = new THREE.CylinderGeometry(0.8,0.8, 0.1, 100);
+const figurePart_1 = new THREE.Mesh(figureGeometry_1, material);
+figurePart_1.position.y=0.3;
+black_figure.add(figurePart_1);
+
+const figureGeometry_2 = new THREE.CylinderGeometry(0.45, 0.7, 0.8, 100);
+const figurePart_2 = new THREE.Mesh(figureGeometry_2, material);
+figurePart_2.position.y=0.95; 	
+black_figure.add(figurePart_2);
+
+const figureGeometry_3 = new THREE.CylinderGeometry(0.55, 0.55, 0.3, 100);
+const figurePart_3 = new THREE.Mesh(figureGeometry_3, material);
+figurePart_3.position.y=1.49; 
+black_figure.add(figurePart_3);
+
+const figureGeometry_4 = new THREE.CylinderGeometry(0.6, 0.5, 0.7, 100);
+const figurePart_4 = new THREE.Mesh(figureGeometry_4, material); 
+figurePart_4.position.y=1.99;
+black_figure.add(figurePart_4);
+
+const figureGeometry_5 = new THREE.CylinderGeometry(0.75, 0.75, 0.1, 100);
+const figurePart_5 = new THREE.Mesh(figureGeometry_5, material);
+figurePart_5.position.y=2.2;
+black_figure.add(figurePart_5); 
+
+const figureGeometry_6= new THREE.CylinderGeometry(0.8, 0.8, 0.2, 100);
+const figurePart_6 = new THREE.Mesh(figureGeometry_6, material); 
+black_figure.add(figurePart_6);
+figurePart_6.position.y=2.35;	
+
+const figureGeometry_7= new THREE.CylinderGeometry(0.3, 0.5, 0.8, 100);
+const figurePart_7 = new THREE.Mesh(figureGeometry_7, material); 
+black_figure.add(figurePart_7);
+figurePart_7.position.y=2.45;
+
+const figureGeometry_8= new THREE.CylinderGeometry(0.3, 0.3, 0.5, 100);
+const figurePart_8 = new THREE.Mesh(figureGeometry_8, material); 
+black_figure.add(figurePart_8);
+figurePart_8.position.y=2.55;	
+
+black_figure.position.set(0,-3,1);
+scene.add(black_figure);
+renderer.render(scene, camera);
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+camera.position.z = 4.5;
+
+animate();
+
+</script>
+</body>
+</html>
